@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, only: [:sessions]
-  root 'teams#index'
+  # root 'teams#index'
+  # resources :teams, except: [:index]
+
+  resources :teams
 end

@@ -16,3 +16,16 @@ User.create_with(name: 'User_team_lead', password: 'password', role_id: 2).find_
                    password: password,
                    password_confirmation: password).find_or_create_by(email: email)
 end
+
+15.times do |n|
+  name  = "User_teammate#{n+1}"
+  description = Faker::Lorem.paragraph(1)
+  Team.create_with(description: description).find_or_create_by(name: name)
+end
+
+TeamUser.delete_all
+3.times do
+  Team.last(15).each do |t|
+    TeamUser.create!(team_id: t.id, user_id: Faker::Number.between(1, 11))
+  end
+end
