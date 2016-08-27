@@ -1,0 +1,20 @@
+<% if user_signed_in? %>
+  <header>
+    <nav class="navbar navbar-info">
+      <div class="navbar-inner">
+        <ul class="nav navbar-nav">
+          <li><%#= link_to "Проекти", projects_path %></li>
+          <li><%#= link_to "Клієнти", clients_path %></li>
+
+          <%- if user_admin? %>
+            <li><%#= link_to 'Ролі користувачів', roles_path %></li>
+            <li><%#= link_to 'Корстувачі', users_path %></li>
+          <% end %>
+
+
+          <li class="pull-right"><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+<% end %>
