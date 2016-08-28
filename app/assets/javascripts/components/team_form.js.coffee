@@ -5,7 +5,7 @@
 
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '', { team: @state }, (data) =>
+    $.post 'teams', { team: @state }, (data) =>
       @props.handleNewTeam data
       @setState @getInitialState()
     , 'JSON'
