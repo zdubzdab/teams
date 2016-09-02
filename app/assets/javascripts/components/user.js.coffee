@@ -1,7 +1,7 @@
-@Team = React.createClass
+@User = React.createClass
   getInitialState: ->
     edit: false
-    
+
   handleToggle: (e) ->
     e.preventDefault()
     @setState edit: !@state.edit
@@ -10,47 +10,41 @@
     e.preventDefault()
     data =
       name: ReactDOM.findDOMNode(@refs.name).value
-      description: ReactDOM.findDOMNode(@refs.description).value
+      email: ReactDOM.findDOMNode(@refs.email).value
+      password: ReactDOM.findDOMNode(@refs.password).value
     $.ajax
       method: 'PUT'
-      url: "/teams/#{ @props.team.id }"
+      url: "/users/#{ @props.user.id }"
       dataType: 'JSON'
       data:
-        team: data
+        user: data
       success: (data) =>
         @setState edit: false
-        @props.handleEditTeam @props.team, data
+        @props.handleEditUser @props.user, data
       error: () =>
-        alert "Team name cann't be blank"
+        alert "Name email or password can't be blank"
 
   handleDelete: (e) ->
     e.preventDefault()
     $.ajax
       method: 'DELETE'
-      url: "/teams/#{ @props.team.id }"
+      url: "/users/#{ @props.user.id }"
       dataType: 'JSON'
       success: () =>
-        @props.handleDeleteTeam @props.team
+        @props.handleDeleteUser @props.user
 
   recordRow: ->
     React.DOM.tr null,
-      React.DOM.td null, @props.team.name
-      React.DOM.td null, @props.team.description
-      React.DOM.td null,
-        React.DOM.a
-          className: 'link'
-          href: "/teams/#{ @props.team.id }/team_users"
-          disabled: @not_admin()
-          'Manage teammates'
+      React.DOM.td null, @props.user.name
+      React.DOM.td null, @props.user.email
+      React.DOM.td null, @props.user.password
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'
-          disabled: @not_admin()
           onClick: @handleToggle
           'Edit'
         React.DOM.a
           className: 'btn btn-danger'
-          disabled: @not_admin()
           onClick: @handleDelete
           'Delete'
 
@@ -60,21 +54,20 @@
         React.DOM.input
           className: 'form-control'
           type: 'text'
-          defaultValue: @props.team.name
+          defaultValue: @props.user.name
           ref: 'name'
       React.DOM.td null,
-        React.DOM.textarea
+        React.DOM.input
           className: 'form-control'
-          id: "textarea_team_table"
           type: 'text'
-          defaultValue: @props.team.description
-          ref: 'description'
+          defaultValue: @props.user.email
+          ref: 'email'
       React.DOM.td null,
-        React.DOM.a
-          className: 'link'
-          href: "/teams/#{ @props.team.id }/team_users"
-          disabled: @not_admin()
-          'Manage teammates'
+        React.DOM.input
+          className: 'form-control'
+          type: 'password'
+          defaultValue: @props.user.password
+          ref: 'password'
       React.DOM.td null,
         React.DOM.a
           className: 'btn btn-default'
@@ -90,6 +83,3 @@
       @recordForm()
     else
       @recordRow()
-
-  not_admin: ->
-    @props.user_id != 1

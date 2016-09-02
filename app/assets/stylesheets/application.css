@@ -10,43 +10,71 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+
  *= require_tree .
  *= require_self
  */
-#sign_in_panel{
-  margin-top: 200px;
+.team_form {
+  margin-left: 15px;
+  margin-top: 17px;
 }
 
-header {
-  border-color: #ffffff;
-  height: 50px;
-  background: #F0F0F0;
-  margin-bottom: 10px;
-  border-radius: 5px;
-    .navbar-inner {
-      margin-bottom: -10px;
-      font-weight: bold;
+.th_width_20 {
+  width: 20%;
+}
 
-      .nav.navbar-nav {
-        border-radius: 5px;
-        width: 100%;
-        background-color: #5bc0de;
-        position:relative;
-        top:15px;
-      }
-      .nav > li > a {
-        link-padding: 10px 30px;
-        background-color: #5bc0de;
-        font-size: 18px;
-        padding: 10px;
-        color: #ffffff;
-        border-radius: 5px;
+.th_width_50 {
+  width: 50%;
+}
 
-        &:hover {
-          color: #ffffff;
-          text-decoration: none;
-          background: #5bc0de;
-        }
-      }
-    }
+.th_width_12 {
+  width: 12%;
+}
+
+.th_width_32 {
+  width: 32%;
+}
+
+.th_width_30 {
+  width: 30%;
+}
+
+.th_width_18 {
+  width: 18%;
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 10px 10px 10px;
+  margin: 10px;
+  color: #0071B5;
+}
+
+.header_links {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+a {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.auth_form {
+  margin-top: 150px;
+  margin-left: 39px;
+  width: 80%;
+}
+
+#b_sign_in {
+  width: 312px;
+}
+
+#textarea_team_table {
+  height: 70px;
 }

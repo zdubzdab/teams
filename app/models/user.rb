@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable,
   :validatable
 
+  has_many :team_users
   has_many :teams, through: :team_users
   belongs_to :role
 
   validates :name, presence: true
   validates :email, presence: true
-  validates :password, presence: true 
 end

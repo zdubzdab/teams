@@ -1,24 +1,25 @@
-@TeamForm = React.createClass
+@UserForm = React.createClass
   getInitialState: ->
     name: ''
-    description: ''
+    email: ''
+    password: ''
 
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post 'teams', { team: @state }, (data) =>
-      @props.handleNewTeam data
+    $.post 'users', { user: @state }, (data) =>
+      @props.handleNewUser data
       @setState @getInitialState()
     , 'JSON'
 
   render: ->
     React.DOM.form
-      className: 'team_form'
+      className: 'user_form'
       onSubmit: @handleSubmit
       React.DOM.div
         className: 'form-group'
         React.DOM.h3
           className: 'title'
-          'Team creation'
+          'User creation'
         React.DOM.input
           type: 'text'
           className: 'form-control'
@@ -28,17 +29,26 @@
           onChange: @handleChange
       React.DOM.div
         className: 'form-group'
-        React.DOM.textarea
+        React.DOM.input
           type: 'text'
           className: 'form-control'
-          placeholder: 'Description'
-          name: 'description'
-          value: @state.description
+          placeholder: 'Email'
+          name: 'email'
+          value: @state.email
+          onChange: @handleChange
+      React.DOM.div
+        className: 'form-group'
+        React.DOM.input
+          type: 'password'
+          className: 'form-control'
+          placeholder: 'Password'
+          name: 'password'
+          value: @state.password
           onChange: @handleChange
       React.DOM.button
         type: 'submit'
         className: 'btn btn-primary'
-        disabled: !@valid() || @not_admin()
+        disabled: !@valid()
         'Create team'
 
   handleChange: (e) ->
@@ -46,7 +56,5 @@
     @setState "#{ name }": e.target.value
 
   valid: ->
-    @state.name && @state.description
+    @state.name && @state.email && @state.password
 
-  not_admin: ->
-    @props.user_id != 1
