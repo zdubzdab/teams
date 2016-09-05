@@ -78,3 +78,7 @@ a {
 #textarea_team_table {
   height: 70px;
 }
+
+.btn.btn-primary {
+  margin-top: 10px;
+}

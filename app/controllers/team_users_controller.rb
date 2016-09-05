@@ -8,7 +8,7 @@ class TeamUsersController < ApplicationController
   end
 
   def create
-    @team_user = TeamUser.new(team_user_params)
+    @team_user = TeamUser.new(team_users_params)
 
     if @team_user.save
       render json: @user
@@ -26,7 +26,7 @@ class TeamUsersController < ApplicationController
   private
 
     def team_users_params
-      params.require(:team_users).permit(:team_id, :user_id, :role_id)
+      params.permit(:team_id, :user_id, :role_id)
     end
 
     def authenticate_user!

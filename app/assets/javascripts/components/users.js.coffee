@@ -1,7 +1,8 @@
 @Users = React.createClass
   getInitialState: ->
     users: @props.users
-    
+    roles: @props.roles
+
   getDefaultProps: ->
     users: []
 
@@ -34,14 +35,6 @@
           'Main page'
       React.DOM.div
         className: 'col-md-9'
-        React.DOM.select
-          optionValue: "A"
-          
-          "Apple"
-        React.DOM.select
-          name:"form-field-name"
-          value:"one"
-
         React.DOM.h2
           className: 'title'
           'Users'
@@ -67,4 +60,4 @@
 
       React.DOM.div
         className: 'col-md-3'
-        React.createElement UserForm, handleNewUser: @addUser
+        React.createElement UserForm, handleNewUser: @addUser, roles: this.state.roles

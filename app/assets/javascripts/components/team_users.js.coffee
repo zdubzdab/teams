@@ -55,4 +55,5 @@
 
       React.DOM.div
         className: 'col-md-3'
-        React.createElement TeamUserForm, users: this.state.users, handleNewUser: @addTeamUser
+        React.createElement TeamUserForm, users: this.state.users,
+        team_users: this.state.team_users, handleNewTeamUser: @addTeamUser
