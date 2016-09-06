@@ -4,6 +4,7 @@ class TeamUsersController < ApplicationController
   
   def index
     @users = User.all
+    @roles = Role.all
     @team_users = TeamUser.includes(:team, user: [:role]).where(team_id: params[:team_id])
   end
 
@@ -11,7 +12,7 @@ class TeamUsersController < ApplicationController
     @team_user = TeamUser.new(team_users_params)
 
     if @team_user.save
-      render json: @user
+      render json: @team_user
     else
       render json: @team_user.errors, status: :unprocessable_entity
     end
@@ -26,7 +27,7 @@ class TeamUsersController < ApplicationController
   private
 
     def team_users_params
-      params.permit(:team_id, :user_id, :role_id)
+      params.require(:team_user).permit(:team_id, :user_id, :role_id)
     end
 
     def authenticate_user!

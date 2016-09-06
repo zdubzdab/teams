@@ -7,7 +7,6 @@ var TeamUserForm = React.createClass({
     team_user["team_id"] = this.props.team_users[0].team_id
     team_user["user_id"] = this.state.user_id
     var data = {team_user};
-    console.log (data)
     $.ajax({
       data: data,
       url: '/teams/' + this.props.team_users[0].team_id + '/team_users',
@@ -18,7 +17,6 @@ var TeamUserForm = React.createClass({
         xhr.setRequestHeader('X-CSRF-Token', token);
       },
       success: function ( data ) {
-        console.log (data)
         that.props.handleNewTeamUser (data);
       }
     });

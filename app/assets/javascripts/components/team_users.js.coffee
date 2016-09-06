@@ -8,8 +8,28 @@
 
   addTeamUser: (team_user) ->
     team_users = @state.team_users.slice()
-    team_users.push team_user
+# creation js object team_user with user name email role and paste it into table
+    users = @props.users
+    roles = @props.roles
+    user_id = team_user.user_id
+    user = $.grep(users, (e) ->
+      e.id == user_id
+    )
+    role_id = user[0].role_id
+    user_name = user[0].name
+    user_email = user[0].email
+    role = $.grep(roles, (e) ->
+      e.id == role_id
+    )
+    role_name = role[0].name
+    team_user_for_table = {}
+    team_user_for_table.email = user_email
+    team_user_for_table.name = user_name
+    team_user_for_table.id = team_user.id
+    team_user_for_table.role = role_name
+    team_users.push team_user_for_table
     @setState team_users: team_users
+
 
   deleteTeamUser: (team_user) ->
     team_users = @state.team_users.slice()

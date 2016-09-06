@@ -1,5 +1,5 @@
 module PullUsersAndTeamsHelper
-  def pull_users_their_roles_and_teams_belongs_to_team_users(team_users, users)
+  def pull_users_their_roles_and_teams_belongs_to_team_users(team_users, users, roles)
     users_json = team_users.map do |t_u|
         {
             id: t_u.user.id,
@@ -12,6 +12,6 @@ module PullUsersAndTeamsHelper
         } 
 
     end
-    react_component 'TeamUsers', {team_users: users_json, users: users}
+    react_component 'TeamUsers', {team_users: users_json, users: users, roles: roles}
   end
 end
