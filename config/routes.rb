@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'articles/index'
 
   devise_for :users, only: [:sessions]
   root 'teams#index'

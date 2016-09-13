@@ -38,12 +38,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :role_id, :password)
     end
 
-    def authenticate_user!
-      redirect_to root_path unless user_signed_in?
-    end
-
-    def access_validation!
-      redirect_to root_path unless current_user.role.name == "Admin"
-    end
-
 end

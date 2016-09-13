@@ -30,11 +30,4 @@ class TeamUsersController < ApplicationController
       params.require(:team_user).permit(:team_id, :user_id, :role_id)
     end
 
-    def authenticate_user!
-      redirect_to root_path unless user_signed_in?
-    end
-
-    def access_validation!
-      redirect_to root_path unless current_user.role.name == "Admin"
-    end
 end
