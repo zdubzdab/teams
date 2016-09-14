@@ -24,17 +24,10 @@
     teams[index] = data
     @replaceState teams: teams
 
-  SignOutUser: (user_id) ->
-    @setState user_id: 0
-
-  Auth: (user_id) ->
-    @setState user_id: user_id
-
-  mainPage: ->
+  render: ->
     React.DOM.div
       className: 'col-md-12'
-      React.createElement Header, user_id: this.state.user_id,
-      handleSignOutUser: @SignOutUser
+      React.createElement Header, user_id: this.state.user_id
       React.DOM.div
         className: 'col-md-9'
         React.DOM.h2
@@ -67,14 +60,3 @@
         React.createElement TeamForm, handleNewTeam: @addTeam,
         user_id: this.state.user_id
        
-  signInForm: ->
-    React.DOM.div
-      className: 'col-md-12'
-      className: 'col-md-4 col-md-offset-4'
-      React.createElement AuthForm, user_id: this.state.user_id, handleAuth: @Auth
-
-  render: ->
-    if @state.user_id == 0
-      @signInForm()
-    else
-      @mainPage()

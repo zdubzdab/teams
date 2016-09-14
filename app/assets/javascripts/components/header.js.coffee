@@ -6,7 +6,7 @@
       method: 'DELETE'
       url: "/users/sign_out"
       success: () =>
-        @props.handleSignOutUser @props.user_id = 0
+        window.location = "/users/sign_in"
 
   teammateHeader: ->
     React.DOM.div
@@ -16,7 +16,7 @@
         onClick: @handleSignOut
         'Sign out'
 
-  adminHeader: ->
+  adminMainPgHeader: ->
     React.DOM.div
       className: 'header_links'
       React.DOM.a
@@ -27,9 +27,37 @@
         className: 'link'
         href: "/users"
         'Manage users'
-        
+
+  adminUsersHeader: ->
+    React.DOM.div
+      className: 'header_links'
+      React.DOM.a
+        className: 'link'
+        onClick: @handleSignOut
+        'Sign out'
+      React.DOM.a
+        className: 'link'
+        href: "/"
+        'Main page'
+
+  adminTeamUsersHeader: ->
+    React.DOM.div
+      className: 'header_links'
+      React.DOM.a
+        className: 'link'
+        onClick: @handleSignOut
+        'Sign out'
+      React.DOM.a
+        className: 'link'
+        href: "/"
+        'Main page'
+
   render: ->
     if @props.user_id == 1
-      @adminHeader()
+      @adminMainPgHeader()
+    else if window.location.pathname == "/users"
+      @adminUsersHeader()
+    else if window.location.pathname.includes("/teams")
+      @adminTeamUsersHeader()
     else
       @teammateHeader()

@@ -27,12 +27,7 @@
   render: ->
     React.DOM.div
       className: 'col-md-12'
-      React.DOM.div
-        className: 'header_links'
-        React.DOM.a
-          className: 'link'
-          href: "/"
-          'Main page'
+      React.createElement Header
       React.DOM.div
         className: 'col-md-9'
         React.DOM.h2

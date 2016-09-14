@@ -30,7 +30,6 @@
     team_users.push team_user_for_table
     @setState team_users: team_users
 
-
   deleteTeamUser: (team_user) ->
     team_users = @state.team_users.slice()
     index = team_users.indexOf team_user
@@ -40,12 +39,7 @@
   render: ->
     React.DOM.div
       className: 'col-md-12'
-      React.DOM.div
-        className: 'header_links'
-        React.DOM.a
-          className: 'link'
-          href: "/"
-          'Main page'
+      React.createElement Header
       React.DOM.div
         className: 'col-md-9'
         React.DOM.h3
