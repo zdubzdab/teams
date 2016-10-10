@@ -60,3 +60,4 @@
         React.createElement TeamForm, handleNewTeam: @addTeam,
         user_id: this.state.user_id
        
+
