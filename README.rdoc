@@ -1,6 +1,6 @@
-Simple web service where users create teams
+==Simple web service where users create teams
 
-Project
+=Project
 
 $ rake db:create && db:migrate && db:seed
 
